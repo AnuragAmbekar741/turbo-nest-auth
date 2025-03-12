@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { postData } from "@/api/request";
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -33,7 +34,9 @@ export function SigninForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    const reponse = await postData("/auth/signin", data);
+    console.log(reponse);
     toast("Signup successfull");
   }
 
@@ -73,7 +76,7 @@ export function SigninForm() {
             <Button className="w-full" type="submit">
               Sign in
             </Button>
-            <Button className="w-full" variant="outline" type="submit">
+            <Button className="w-full" variant="outline">
               Continue with google
             </Button>
           </div>
