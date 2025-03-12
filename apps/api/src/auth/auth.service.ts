@@ -1,5 +1,9 @@
-import { ConflictException, Injectable } from '@nestjs/common';
-import { CreateUserDto, LoginUserDto } from './dto/create-user.dto';
+import {
+  ConflictException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from 'src/user/user.service';
 
 @Injectable()
@@ -12,15 +16,14 @@ export class AuthService {
     return this.userService.create(createUserDto);
   }
 
-  async loginUser(loginUserDto: LoginUserDto) {
-    const user = await this.userService.findByEmail(loginUserDto.email);
-    if (user) {
-      const verifyPass = await this.userService.verifyPassword(
-        user.password,
-        loginUserDto.password,
-      );
-      if (verifyPass) return user;
-      else throw new ConflictException('Password doesnot match');
-    } else throw new ConflictException('Email doesnot match');
+  async validateLocalUser(email: string, password: string) {
+    const user = await this.userService.findByEmail(email);
+    if (!user) throw new UnauthorizedException('User not found!');
+    const verifyPassword = await this.userService.verifyPassword(
+      user.password,
+      password,
+    );
+    if (!verifyPassword) throw new ConflictException('Password doesnot match');
+    return user;
   }
 }
