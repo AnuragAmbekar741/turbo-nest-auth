@@ -1,9 +1,8 @@
+import { MainLayout } from "@/components/auth/layouts/MainLayout";
 import React, { PropsWithChildren } from "react";
 
 const AuthLayout = ({ children }: PropsWithChildren) => {
-  return (
-    <div className="h-screen flex items-center justify-center">{children}</div>
-  );
+  return <MainLayout>{children}</MainLayout>;
 };
 
 export default AuthLayout;

@@ -1,16 +1,16 @@
-import Link from "next/link";
 import React from "react";
-import { SigninForm } from "./SigninForm";
+import { SigninForm } from "../../../components/auth/forms/SigninForm";
+import { PageLayout } from "@/components/auth/layouts/PageLayout";
 
 const SigninPage = () => {
   return (
-    <div className="p-8 rounded-lg w-96 flex flex-col justify-center items-center gap-8">
-      <h3 className="text-2xl font-medium">Sign in</h3>
+    <PageLayout
+      title="Sign in"
+      linkText="Create have an account? Signin"
+      linkHref="signup"
+    >
       <SigninForm />
-      <Link className="text-sm font-normal text-gray-600" href="signup">
-        Create an account? Sign up
-      </Link>
-    </div>
+    </PageLayout>
   );
 };
 
