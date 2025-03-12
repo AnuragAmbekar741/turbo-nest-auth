@@ -17,9 +17,6 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
 const FormSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
   email: z.string().min(2, {
     message: "Email must be at least 2 characters.",
   }),
@@ -28,7 +25,7 @@ const FormSchema = z.object({
   }),
 });
 
-export function SignupForm() {
+export function SigninForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -44,19 +41,6 @@ export function SignupForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
         <div className="flex w-full gap-4 flex-col">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="shadcn" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <FormField
             control={form.control}
             name="email"
