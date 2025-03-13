@@ -4,8 +4,10 @@
   "globalDependencies": [
     ".env"
   ],
+  "globalEnv": ["NEXT_PUBLIC_BASE_URL_API","NEXT_PUBLIC_SESSION_SECRET_KEY"],
   "tasks": {
     "build": {
+      "env": ["NEXT_PUBLIC_BASE_URL_API","NEXT_PUBLIC_SESSION_SECRET_KEY"],
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"]
