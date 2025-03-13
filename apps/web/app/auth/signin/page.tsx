@@ -6,7 +6,7 @@ const SigninPage = () => {
   return (
     <PageLayout
       title="Sign in"
-      linkText="Create have an account? Signin"
+      linkText="Create an account? Sign up"
       linkHref="signup"
     >
       <SigninForm />

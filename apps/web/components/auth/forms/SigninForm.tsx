@@ -31,6 +31,7 @@ export function SigninForm() {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       email: "",
+      password: "",
     },
   });
 
