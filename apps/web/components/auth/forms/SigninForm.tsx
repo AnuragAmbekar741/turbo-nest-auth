@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { postData } from "@/api/request";
 import { createSession } from "@/lib/sessions";
+import { UserDto } from "@repo/types";
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -37,7 +38,7 @@ export function SigninForm() {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    const reponse = await postData("/auth/signin", data);
+    const reponse: UserDto = await postData("/auth/signin", data);
     await createSession({
       user: {
         id: reponse.id,
