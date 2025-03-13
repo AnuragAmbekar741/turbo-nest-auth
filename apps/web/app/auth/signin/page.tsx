@@ -5,7 +5,7 @@ import { PageLayout } from "@/components/auth/layouts/PageLayout";
 const SigninPage = () => {
   return (
     <PageLayout
-      title="Sign in"
+      title="Login"
       linkText="Create an account? Sign up"
       linkHref="signup"
     >
