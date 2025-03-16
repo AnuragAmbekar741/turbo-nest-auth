@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { createSession } from "@/lib/sessions";
 import { useLogin } from "@/utils/hooks/auth/useLoginUser";
-
+import { useRouter } from "next/navigation";
 const FormSchema = z.object({
   email: z.string().min(2, {
     message: "Email must be at least 2 characters.",
@@ -28,7 +28,7 @@ const FormSchema = z.object({
 
 export function SigninForm() {
   const loginUserMutation = useLogin();
-
+  const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -47,6 +47,7 @@ export function SigninForm() {
           },
         });
         toast("Login successfull");
+        router.push("/dashboard/home");
       },
     });
   }

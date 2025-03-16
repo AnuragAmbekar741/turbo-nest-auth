@@ -15,7 +15,7 @@ export const PageLayout: React.FC<Props> = ({
   linkText,
 }) => {
   return (
-    <div className="p-8 rounded-lg w-96 flex flex-col justify-center items-center gap-8 shadow-sm border border-slate-50">
+    <div className="p-8 rounded-lg w-96 flex flex-col justify-center items-center gap-8 border">
       <div className="flex w-full items-center justify-start">
         <h3 className="text-3xl font-light">{title}</h3>
       </div>
