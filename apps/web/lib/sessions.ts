@@ -15,7 +15,7 @@ const secret = process.env.NEXT_PUBLIC_SESSION_SECRET_KEY!;
 const encodeKey = new TextEncoder().encode(secret);
 
 export async function createSession(payload: Session) {
-  const expiredAt = new Date(Date.now() + 7 * 24 * 60 * 1000);
+  const expiredAt = new Date(Date.now() + 7 * 24 * 60 * 1000); // 7 Days
   const session = await new SignJWT(payload)
     .setProtectedHeader({
       alg: "HS256",

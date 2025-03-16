@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import { postData } from "@/api/request";
 import { createSession } from "@/lib/sessions";
 import { UserDto } from "@repo/types";
+import { useLogin } from "@/utils/hooks/auth/useLoginUser";
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -29,6 +30,8 @@ const FormSchema = z.object({
 });
 
 export function SigninForm() {
+  const loginUserMutation = useLogin();
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -38,15 +41,17 @@ export function SigninForm() {
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    const reponse: UserDto = await postData("/auth/signin", data);
-    await createSession({
-      user: {
-        id: reponse.id,
-        name: reponse.name,
+    loginUserMutation.mutate(data, {
+      onSuccess: async (data) => {
+        await createSession({
+          user: {
+            id: data?.id,
+            name: data?.name,
+          },
+        });
+        toast("Signup successfull");
       },
     });
-    console.log(reponse);
-    toast("Signup successfull");
   }
 
   return (
