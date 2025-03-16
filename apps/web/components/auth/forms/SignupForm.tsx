@@ -105,7 +105,7 @@ export function SignupForm() {
             <Button className="w-full" type="submit">
               Sign up
             </Button>
-            <Button className="w-full" variant="outline" type="submit">
+            <Button className="w-full" variant="outline" type="button">
               Continue with google
             </Button>
           </div>
