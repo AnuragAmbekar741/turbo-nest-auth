@@ -49,7 +49,7 @@ export function SigninForm() {
             name: data?.name,
           },
         });
-        toast("Signup successfull");
+        toast("Login successfull");
       },
     });
   }
