@@ -4,6 +4,7 @@ export interface UserDto {
   password: string;
   id: string;
   accessToken: string;
+  refreshToken: string;
 }
 
 export interface SignupUserDto {

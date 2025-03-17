@@ -48,6 +48,7 @@ export function SigninForm() {
             name: data?.name,
           },
           accessToken: data?.accessToken,
+          refreshToken: data?.refreshToken,
         });
         toast("Login successfull");
         router.push("/dashboard/home");

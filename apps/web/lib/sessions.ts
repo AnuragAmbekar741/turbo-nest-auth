@@ -8,7 +8,7 @@ export type Session = {
     name: string;
   };
   accessToken: string;
-  //   refreshToken: string;
+  refreshToken: string;
 };
 
 const secret = process.env.NEXT_PUBLIC_SESSION_SECRET_KEY!;
