@@ -22,6 +22,10 @@ export class UserService {
     return await this.prisma.user.findUnique({ where: { email } });
   }
 
+  async findOne(userId: number) {
+    return await this.prisma.user.findUnique({ where: { id: userId } });
+  }
+
   async verifyPassword(pass1: string, pass2: string) {
     const isVerified = verify(pass1, pass2);
     return isVerified;

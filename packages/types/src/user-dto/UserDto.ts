@@ -3,6 +3,7 @@ export interface UserDto {
   email: string;
   password: string;
   id: string;
+  accessToken: string;
 }
 
 export interface SignupUserDto {

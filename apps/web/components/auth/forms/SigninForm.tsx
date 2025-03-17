@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { createSession } from "@/lib/sessions";
 import { useLogin } from "@/utils/hooks/auth/useLoginUser";
 import { useRouter } from "next/navigation";
+
 const FormSchema = z.object({
   email: z.string().min(2, {
     message: "Email must be at least 2 characters.",
@@ -46,6 +47,7 @@ export function SigninForm() {
             id: data?.id,
             name: data?.name,
           },
+          accessToken: data?.accessToken,
         });
         toast("Login successfull");
         router.push("/dashboard/home");
