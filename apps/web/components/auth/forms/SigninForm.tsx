@@ -40,6 +40,7 @@ export function SigninForm() {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     loginUserMutation.mutate(data, {
       onSuccess: async (data) => {
+        console.log(data);
         await createSession({
           user: {
             id: data?.id,

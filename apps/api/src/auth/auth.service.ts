@@ -5,10 +5,14 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from 'src/user/user.service';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   async registerUser(createUserDto: CreateUserDto) {
     const user = await this.userService.findByEmail(createUserDto.email);
@@ -25,5 +29,24 @@ export class AuthService {
     );
     if (!verifyPassword) throw new ConflictException('Password doesnot match');
     return user;
+  }
+
+  async login(userId: number, name?: string) {
+    const { accessToken } = await this.generateToken(userId);
+    return {
+      id: userId,
+      name: name,
+      accessToken,
+    };
+  }
+
+  async generateToken(userId: number) {
+    const payload = { sub: userId };
+    const [accessToken] = await Promise.all([
+      this.jwtService.signAsync(payload),
+    ]);
+    return {
+      accessToken,
+    };
   }
 }
