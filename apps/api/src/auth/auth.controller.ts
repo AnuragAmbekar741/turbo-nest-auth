@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LocalAuthGuard } from './guards/local-auth/local-auth.guard';
 import { JwtAuthGuard } from './guards/jwt-auth/jwt-auth.guard';
+import { RefreshAuthGuard } from './guards/refresh-auth/refresh-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -30,5 +31,11 @@ export class AuthController {
   @Get('protected')
   getAll() {
     return 'You are accessing protected route';
+  }
+
+  @UseGuards(RefreshAuthGuard)
+  @Post('refresh')
+  refreshToken(@Request() req) {
+    return this.authService.refreshToken(req.user.id, req.user.name);
   }
 }
