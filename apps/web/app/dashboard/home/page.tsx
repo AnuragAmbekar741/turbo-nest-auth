@@ -1,7 +1,13 @@
+import { getProfile } from "@/utils/actions";
 import React from "react";
 
-const page = () => {
-  return <div>page</div>;
+const HomePage = async () => {
+  const res = await getProfile();
+  return (
+    <div className="w-full">
+      <p>{res.data}</p>
+    </div>
+  );
 };
 
-export default page;
+export default HomePage;
