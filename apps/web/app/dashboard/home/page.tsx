@@ -1,9 +1,7 @@
-import { getSession } from "@/lib/sessions";
 import React from "react";
 
-const HomePage = async () => {
-  const session = await getSession();
-  return <div>{session?.user.name}</div>;
+const page = () => {
+  return <div>page</div>;
 };
 
-export default HomePage;
+export default page;

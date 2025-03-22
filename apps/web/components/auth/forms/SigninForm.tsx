@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { createSession } from "@/lib/sessions";
 import { useLogin } from "@/utils/hooks/auth/useLoginUser";
 import { useRouter } from "next/navigation";
+import { client } from "@/api/global.client";
 
 const FormSchema = z.object({
   email: z.string().min(2, {
@@ -50,6 +51,9 @@ export function SigninForm() {
           accessToken: data?.accessToken,
           refreshToken: data?.refreshToken,
         });
+        client.defaults.headers.common = {
+          Authorization: `Bearer ${data?.accessToken}`,
+        };
         toast("Login successfull");
         router.push("/dashboard/home");
       },
