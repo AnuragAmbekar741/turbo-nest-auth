@@ -8,8 +8,6 @@ export const getProfile = async () => {
   client.defaults.headers.common = {
     Authorization: `bearer ${sessions?.accessToken}`,
   };
-
   const response = await client.get("auth/protected");
-  //   const result = await response.json();
   return response;
 };
